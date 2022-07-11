@@ -2,7 +2,7 @@ function fetchs(error){
     if(error === 'error'){
         return Promise.reject('network error');
     }
-    return Promise.resolve({item :'handPhon' , price:1390});
+    return Promise.resolve({item :'handPn' , price:1390});
 
     
 }
