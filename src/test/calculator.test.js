@@ -1,55 +1,67 @@
-const Calculator = require('../calculator');
+const Calculator = require('../calculator.js');
 
-test('Cal', () => {
-    const TestCalculator = new Calculator
+describe('Calculator', () => {
+  let cal;
+  beforeEach(() => {
+    cal = new Calculator();
+  });
 
-    expect(TestCalculator.value).toBe(0);
-    TestCalculator.set(2)
-    expect(TestCalculator.value).toBe(2);
-    TestCalculator.add(2);
-    expect(TestCalculator.value).toBe(4);
-    TestCalculator.subtract(1)
-    expect(TestCalculator.value).toBe(3);
-    TestCalculator.multiply(2)
-    expect(TestCalculator.value).toBe(6);
-    TestCalculator.divide(6)
-    expect(TestCalculator.value).toBe(1);
-});
+  it('inits with 0', () => {
+    expect(cal.value).toBe(0);
+  });
 
-describe('CAL',()=>{
-    let cal 
-    beforeEach(()=>{cal = new Calculator;})
-    test('set',()=>{
-        cal.set(2)
-        expect(cal.value).toBe(2);
-    })
-    test('add',()=>{
-        cal.add(1)
-        expect(cal.value).toBe(1)
-    })
-    it('error value is greater than 100',()=>{
-        expect(()=>{
-            cal.add(300);
-        }).toThrow();
+  it('sets', () => {
+    cal.set(9);
+    expect(cal.value).toBe(9);
+  });
+
+  it('clear', () => {
+    cal.set(9);
+    cal.clear();
+    expect(cal.value).toBe(0);
+  });
+
+  it('adds', () => {
+    cal.set(1);
+    cal.add(2);
+
+    expect(cal.value).toBe(3);
+  });
+
+  it('add should throw an error if value is greater than 100', () => {
+    expect(() => {
+      cal.add(101);
+    }).toThrow('Value can not be greater than 100');
+  });
+
+  it('subtracts', () => {
+    cal.subtract(1);
+
+    expect(cal.value).toBe(-1);
+  });
+
+  it('multiplies', () => {
+    cal.set(5);
+    cal.multiply(4);
+
+    expect(cal.value).toBe(20);
+  });
+
+  describe('divides', () => {
+    it('0 / 0 === NaN', () => {
+      cal.divide(0);
+      expect(cal.value).toBe(NaN);
     });
+    it('1 / 0 === Infinity', () => {
+      cal.set(1);
+      cal.divide(0);
+      expect(cal.value).toBe(Infinity);
+    });
+    it('4 / 4 === 1', () => {
+      cal.set(4);
+      cal.divide(4);
 
-    test('subtract',()=>{
-        cal.add(50)
-        cal.subtract(20)
-        expect(cal.value).toBe(30)
-    })
-    it('Divide',()=>{
-        cal.set(20)
-        cal.divide(2)
-        expect(cal.value).toBe(10)
-    })
-
-    describe('Expressioin',()=>{
-        it('0/0',()=>{
-            cal.divide(0)
-            expect(cal.value).toBe(NaN);
-        })
-    })
-
-})
-
+      expect(cal.value).toBe(1);
+    });
+  });
+});
