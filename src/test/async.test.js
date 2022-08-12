@@ -1,4 +1,4 @@
-const fetchProduct = require('../async.js');
+const fetchProduc = require('../async.js');
 
 describe('Async', () => {
   it('async - done', (done) => {
