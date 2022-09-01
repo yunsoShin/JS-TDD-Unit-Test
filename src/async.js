@@ -1,6 +1,6 @@
 function fetchProduct(error) {
   if (error === 'error') {
-    return Promise.reject('network eror');
+    return Promise.reject('network ero');
   }
   return Promise.resolve({ item: '', price: 200 });
 }
