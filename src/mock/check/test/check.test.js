@@ -1,1 +1,1 @@
-const check = require('../check');
+const check = require("../check");
