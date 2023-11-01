@@ -1,8 +1,8 @@
 function check(predicate, onSuccess, onFail) {
   if (predicate()) {
-    onSuccess('yes');
+    onSuccess("yes");
   } else {
-    onFail('no');
+    onFail("no");
   }
 }
 
